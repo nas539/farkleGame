@@ -5,7 +5,10 @@ const farkleGame = () => {
     let haveYouPlayedAnswer = this.haveYouPlayedAnswer;
     let howMuchAreYouBetting = this.howMuchAreYouBetting;
     let continueAnswer = this.continueAnswer;
-    let yourHand = new Array;
+    let counter = 0;
+    let dice = 6;
+    let roll = this.roll;
+    let playerHand = new Array;
     let dealersHand = new Array;
     let playerOneHand = new Array;
     let playerTwoHand = new Array;
@@ -13,7 +16,7 @@ const farkleGame = () => {
     let purse = this.purse;
     let totalBet = this.totalBet;
 
-    const dice = { "1": 2, "2": 5, "3": 5, "4": 4, "5": 2, "6": 3 };
+    const diceNumbers = { "1": 2, "2": 5, "3": 5, "4": 4, "5": 2, "6": 3 };
 
     console.log("Welcome To Farkle\n");
     haveYouPlayedAnswer = prompt("Have you ever played farkle?\nY/N\n");
@@ -32,6 +35,20 @@ const farkleGame = () => {
         } else {
             purse = prompt("How much money are you starting with?\n");
             bet = prompt("How much would you like to bet this game?\n");
+            roll = prompt("You go first, would you like to roll?\nY/N\n");
+            if (roll.toLowerCase() === "n") {
+                console.log("Okay my turn!\n");
+
+                //TODO: Create the dealers turn.
+
+            } else {
+                do {
+                    let arrayOne = Object.keys(diceNumbers);
+                    let arrayTwo = Object.values(diceNumbers);
+                    let dieNumber = chance.weighted(arrayOne, arrayTwo);
+                    playerHand.push(dieNumber);
+                } while (dice < 6);
+            }
 
         }
 
