@@ -15,8 +15,25 @@ const farkleGame = () => {
     let bet = this.bet;
     let purse = this.purse;
     let totalBet = this.totalBet;
+    let points = this.points;
 
-    const diceNumbers = { "1": 2, "2": 5, "3": 5, "4": 4, "5": 2, "6": 3 };
+    const diceNumbers = {
+        1: 2,
+        2: 5,
+        3: 5,
+        4: 4,
+        5: 2,
+        6: 3
+    };
+
+    const notEqualToOne = x => x !== 1;
+    const notEqualToFive = x => x !== 5;
+
+    // const handIterator = someArray => {
+    //     for (let i = 0; i < someArray.length; i++) {
+    //         console.log(someArray[i]);
+    //     }
+    // }
 
     console.log("Welcome To Farkle\n");
     haveYouPlayedAnswer = prompt("Have you ever played farkle?\nY/N\n");
@@ -47,19 +64,43 @@ const farkleGame = () => {
                     let arrayTwo = Object.values(diceNumbers);
                     let dieNumber = chance.weighted(arrayOne, arrayTwo);
                     playerHand.push(dieNumber);
-                } while (dice < 6);
+                    counter++;
+                } while (counter < dice);
+                console.log(`You rolled:\n${playerHand.toString()}`);
+                if (playerHand.every(notEqualToOne) && playerHand.every(notEqualToFive)) {
+                    console.log("Farkle!!!");
+                }
+
             }
-
         }
+    } else {
+        continueAnswer = prompt("Are you ready to play?\nY/N\n");
+        if (continueAnswer.toLowerCase() === "n") {
+            console.log("Thanks for coming by...you would've lost your money anyways!!!");
+        } else {
+            purse = prompt("How much money are you starting with?\n");
+            bet = prompt("How much would you like to bet this game?\n");
+            roll = prompt("You go first, would you like to roll?\nY/N\n");
+            if (roll.toLowerCase() === "n") {
+                console.log("Okay my turn!\n");
 
+                //TODO: Create the dealers turn.
 
-
+            } else {
+                do {
+                    let arrayOne = Object.keys(diceNumbers);
+                    let arrayTwo = Object.values(diceNumbers);
+                    let dieNumber = chance.weighted(arrayOne, arrayTwo);
+                    playerHand.push(dieNumber);
+                    counter++;
+                } while (counter < dice);
+                console.log(`You rolled:\n${playerHand.toString()}`);
+                if (playerHand.every(notEqualToOne) && playerHand.every(notEqualToFive)) {
+                    console.log("Farkle!!!");
+                }
+            }
+        }
     }
 
-
-
-
-
 }
-
 farkleGame();
