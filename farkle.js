@@ -24,7 +24,17 @@ const farkleGame = () => {
         console.log("Other combinations of numbers are worth points if you get them in a single roll.\n");
         console.log("All scoring dice will be removed\n");
         console.log("If you are lucky enough to have six scoring dice, you get to continue using all six dice.\n");
+        console.log("You can stop at anypoint during your turn and keep you points.");
         console.log("If you have no scoring dice, you FARKLE and it is the next persons turn!");
+        continueAnswer = prompt("Are you ready to play?\nY/N\n");
+        if (continueAnswer.toLowerCase() === "n") {
+            console.log("Thanks for coming by and wasting my time explaining the rules...you would've lost your money anyways!!!");
+        } else {
+            purse = prompt("How much money are you starting with?\n");
+            bet = prompt("How much would you like to bet this game?\n");
+
+        }
+
 
 
     }
@@ -34,3 +44,5 @@ const farkleGame = () => {
 
 
 }
+
+farkleGame();
